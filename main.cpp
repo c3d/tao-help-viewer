@@ -44,6 +44,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QLibraryInfo>
 #include <QtCore/QLocale>
+#include <QtCore/QSettings>
 #include <QtCore/QScopedPointer>
 #include <QtCore/QStringList>
 #include <QtCore/QTranslator>
@@ -177,7 +178,7 @@ bool synchronizeDocs(QHelpEngineCore &collection,
                 cmd.showMessage(QCoreApplication::translate("Assistant",
                                     "Error registering documentation file '%1': %2").
                                 arg(docFile).arg(cachedCollection.error()), true);
-                //return false;
+                return false;
             }
         }
     }
@@ -301,9 +302,11 @@ void setupTranslation(const QString &fileName, const QString &dir)
 void setupTranslations()
 {
     TRACE_OBJ
-    const QString& locale = QLocale::system().name();
+    QString locale = QLocale().name().left(2);
+    locale = QSettings("Taodyne", "Tao Presentations")
+            .value("uiLanguage", locale).toString();
     const QString &resourceDir
-        = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+        = QCoreApplication::applicationDirPath();
     setupTranslation(QLatin1String("assistant_") + locale, resourceDir);
     setupTranslation(QLatin1String("qt_") + locale, resourceDir);
     setupTranslation(QLatin1String("qt_help_") + locale, resourceDir);

@@ -8,9 +8,6 @@ CONFIG += qt \
     help
 QT += network
 PROJECTNAME = Assistant
-target.path = $$APPINST
-INSTALLS += target
-macx:QMAKE_POST_LINK = sh ../fix_qt_refs_app  "$(TARGET)"
 DEPENDPATH += ../shared
 
 HEADERS += aboutdialog.h \
@@ -96,8 +93,26 @@ win32 {
 
 mac {
     ICON = assistant.icns
-    TARGET = Assistant
+    TARGET = "Tao Presentations Help"
     QMAKE_INFO_PLIST = Info_mac.plist
+
+    # In *.lproj/InfoPlist.strings:
+    # CFBundleName = The name in the application menu
+    # CFBundleDisplayName = The name in finder and on the dock
+    # Please use UTF-8 encoding
+    lproj.path = $$APPINST/$${TARGET}.app/Contents/Resources
+    lproj.files = *.lproj
+    INSTALLS += lproj
+}
+macx {
+  # See comment in tao.pro
+  app.path    = $$APPINST
+  app.extra   = \$(INSTALL_DIR) \"$${TARGET}.app\" \"$$APPINST\"
+  INSTALLS   += app
+  QMAKE_POST_LINK = sh ../fix_qt_refs_app  "$(TARGET)"
+} else {
+  target.path = $$APPINST
+  INSTALLS   += target
 }
 
 contains(CONFIG, static): {
@@ -110,7 +125,7 @@ contains(CONFIG, static): {
 
 TRANSLATIONS = assistant_fr.ts
 include(../translations.pri)
-macx:translations.path = $$APPINST/Assistant.app/Contents/MacOS
+macx:translations.path = $$APPINST/$${TARGET}.app/Contents/MacOS
 !macx:translations.path = $$APPINST
-translations.files = *.qm
+translations.files = *_fr.qm $$[QT_INSTALL_TRANSLATIONS]/qt_fr.qm $$[QT_INSTALL_TRANSLATIONS]/qt_help_fr.qm
 INSTALLS += translations
