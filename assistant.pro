@@ -19,6 +19,7 @@ HEADERS += aboutdialog.h \
     bookmarkmodel.h \
     centralwidget.h \
     cmdlineparser.h \
+    collectionconfiguration.h \
     contentwindow.h \
     findwidget.h \
     filternamedialog.h \
@@ -34,8 +35,8 @@ HEADERS += aboutdialog.h \
     searchwidget.h \
     topicchooser.h \
     tracer.h \
-    xbelsupport.h \
-    collectionconfiguration.h
+    xbelsupport.h
+
 contains(QT_CONFIG, webkit) {
     HEADERS += helpviewer_qwv.h
 } else {
@@ -52,6 +53,7 @@ SOURCES += aboutdialog.cpp \
     bookmarkmodel.cpp \
     centralwidget.cpp \
     cmdlineparser.cpp \
+    collectionconfiguration.cpp \
     contentwindow.cpp \
     findwidget.cpp \
     filternamedialog.cpp \
@@ -67,8 +69,8 @@ SOURCES += aboutdialog.cpp \
     remotecontrol.cpp \
     searchwidget.cpp \
     topicchooser.cpp \
-    xbelsupport.cpp \
-    collectionconfiguration.cpp
+    xbelsupport.cpp
+
  contains(QT_CONFIG, webkit) {
     SOURCES += helpviewer_qwv.cpp
 } else {
