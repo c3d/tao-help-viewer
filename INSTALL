@@ -1,0 +1,22 @@
+This is the Tao Presentations Help Viewer application, based on the
+Qt Assistant of the Qt Toolkit.
+
+Quick build instructions for the public release of this project:
+
+- Download and install Tao Presentations. Locate the 'sdk' subdirectory
+  under the installation path. Make a copy of 'sdk' (working area).
+- cd sdk
+- Clone this project into help_viewer
+- Run qmake:
+  [Linux]    qmake -r
+  [MacOSX]   qmake -r -spec macx-g++
+  [Windows]  qmake -r -spec win32-g++
+  You need Qt4 libraries and tools (qmake). For Windows, MinGW is required.
+  See the file sdk/README_SDK for details.
+- Build the application:
+  cd help_viewer
+  make install
+  The application will be installed under ./install; you have to copy or
+  move it under the Tao Presentations installation directory for Tao to
+  find it (replace or rename the bundled version).
+

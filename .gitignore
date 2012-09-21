@@ -4,3 +4,8 @@
 /Tao Presentations Help.app
 /assistant
 /helpenginewrapper.moc
+/moc_*.cpp
+/qrc_*.cpp
+/ui_*.h
+/debug
+/release
