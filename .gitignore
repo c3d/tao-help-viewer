@@ -9,3 +9,5 @@
 /ui_*.h
 /debug
 /release
+/object_script.*.Release
+/object_script.*.Debug
