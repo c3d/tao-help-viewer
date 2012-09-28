@@ -11,3 +11,4 @@
 /release
 /object_script.*.Release
 /object_script.*.Debug
+/*.o
