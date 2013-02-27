@@ -218,7 +218,7 @@ private slots:
         deleteLater();
     }
 
-private:
+protected:
     QHelpEngineCore * helpEngine;
     QHelpSearchEngine * searchEngine, tmpSearchEngine;
 };
