@@ -85,7 +85,10 @@ HelpNetworkReply::HelpNetworkReply(const QNetworkRequest &request,
     setRequest(request);
     setOpenMode(QIODevice::ReadOnly);
 
-    setHeader(QNetworkRequest::ContentTypeHeader, mimeType);
+    QString contentType(mimeType);
+    if (contentType == "text/plain")
+        contentType += "; charset=\"UTF-8\"";
+    setHeader(QNetworkRequest::ContentTypeHeader, contentType);
     setHeader(QNetworkRequest::ContentLengthHeader, QByteArray::number(origLen));
     QTimer::singleShot(0, this, SIGNAL(metaDataChanged()));
     QTimer::singleShot(0, this, SIGNAL(readyRead()));
