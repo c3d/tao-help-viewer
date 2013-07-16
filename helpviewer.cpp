@@ -71,6 +71,7 @@ struct ExtensionMap {
 } extensionMap[] = {
     { ".bmp", "image/bmp" },
     { ".css", "text/css" },
+    { ".ddd", "text/plain" },
     { ".gif", "image/gif" },
     { ".html", "text/html" },
     { ".htm", "text/html" },
