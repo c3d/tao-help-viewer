@@ -50,16 +50,23 @@
 #include <QtCore/QtAlgorithms>
 #include <QtCore/QFileSystemWatcher>
 
-#include <QtGui/QDesktopWidget>
-#include <QtGui/QFileDialog>
-#include <QtGui/QFontDatabase>
-#include <QtGui/QHeaderView>
-#include <QtGui/QMenu>
-#include <QtGui/QMessageBox>
+#include <QDesktopWidget>
+#include <QFileDialog>
+#include <QFontDatabase>
+#include <QHeaderView>
+#include <QMenu>
+#include <QMessageBox>
 
 #include <QtHelp/QHelpEngineCore>
 
 QT_BEGIN_NAMESPACE
+
+
+#if QT_VERSION >= 0x050000
+// Qt5.0 deprecated that, but we need it a few times here
+template <typename T, typename U>
+static inline QList<T> qFindChildren(U u) { return u->template findChildren<T>(); }
+#endif
 
 PreferencesDialog::PreferencesDialog(QWidget *parent)
     : QDialog(parent)

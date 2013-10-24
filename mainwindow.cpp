@@ -70,22 +70,22 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QCoreApplication>
 
-#include <QtGui/QMenuBar>
-#include <QtGui/QAction>
-#include <QtGui/QToolBar>
-#include <QtGui/QStatusBar>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QLayout>
-#include <QtGui/QDockWidget>
-#include <QtGui/QTreeView>
-#include <QtGui/QMessageBox>
-#include <QtGui/QFontDatabase>
-#include <QtGui/QComboBox>
-#include <QtGui/QProgressBar>
-#include <QtGui/QDesktopServices>
-#include <QtGui/QToolButton>
-#include <QtGui/QFileDialog>
+#include <QMenuBar>
+#include <QAction>
+#include <QToolBar>
+#include <QStatusBar>
+#include <QLabel>
+#include <QLineEdit>
+#include <QLayout>
+#include <QDockWidget>
+#include <QTreeView>
+#include <QMessageBox>
+#include <QFontDatabase>
+#include <QComboBox>
+#include <QProgressBar>
+#include <QDesktopServices>
+#include <QToolButton>
+#include <QFileDialog>
 
 #include <QtHelp/QHelpEngineCore>
 #include <QtHelp/QHelpSearchEngine>
@@ -1048,11 +1048,27 @@ void MainWindow::indexingFinished()
     m_progressWidget = 0;
 }
 
+static QString defaultPreferencesFolderPath()
+{
+#if QT_VERSION >= 0x050000
+    // Thank you Qt5 for this insanity, just in case we have several ~/Desktop
+    QStringList data = QStandardPaths::standardLocations(
+        QStandardPaths::DataLocation);
+    if (data.size() >= 1)
+        return data[0];
+    return "";                  // WARNING?
+#else
+    return QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
+}
+
+
+
+
 QString MainWindow::collectionFileDirectory(bool createDir, const QString &cacheDir)
 {
     TRACE_OBJ
-    QString collectionPath =
-        QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QString collectionPath = defaultPreferencesFolderPath();
     if (collectionPath.isEmpty()) {
         if (cacheDir.isEmpty())
             collectionPath = QDir::homePath() + QDir::separator()

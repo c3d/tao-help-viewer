@@ -42,7 +42,8 @@
 #define CENTRALWIDGET_H
 
 #include <QtCore/QUrl>
-#include <QtGui/QWidget>
+#include <QWidget>
+#include <QPrinter>
 
 QT_BEGIN_NAMESPACE
 

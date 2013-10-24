@@ -44,9 +44,9 @@
 #include <QtCore/QMimeData>
 #include <QtCore/QStack>
 
-#include <QtGui/QApplication>
-#include <QtGui/QStyle>
-#include <QtGui/QTreeView>
+#include <QApplication>
+#include <QStyle>
+#include <QTreeView>
 
 const QLatin1String MIMETYPE("application/bookmarks.assistant");
 

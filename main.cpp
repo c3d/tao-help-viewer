@@ -52,8 +52,8 @@
 #include <QtCore/QTranslator>
 #include <QtCore/QUrl>
 
-#include <QtGui/QApplication>
-#include <QtGui/QDesktopServices>
+#include <QApplication>
+#include <QDesktopServices>
 
 #include <QtHelp/QHelpEngine>
 #include <QtHelp/QHelpSearchEngine>

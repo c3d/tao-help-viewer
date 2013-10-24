@@ -49,12 +49,14 @@
 #include <QtCore/QFile>
 #include <QtCore/QCryptographicHash>
 
-#include <QtGui/QMessageBox>
-#include <QtGui/QFileDialog>
+#include <QMessageBox>
+#include <QFileDialog>
 
 #include <QtHelp/QHelpEngineCore>
 
+#if QT_VERSION < 0x050000
 #include <QtNetwork/QHttp>
+#endif
 
 QT_BEGIN_NAMESPACE
 #ifndef QT_NO_HTTP
@@ -77,6 +79,7 @@ InstallDialog::InstallDialog(QHelpEngineCore *helpEngine, QWidget *parent,
 
     m_windowTitle = tr("Install Documentation");
 
+#if QT_VERSION < 0x050000
     m_http = new QHttp(this);
     connect(m_http, SIGNAL(requestFinished(int,bool)),
             this, SLOT(httpRequestFinished(int,bool)));
@@ -84,6 +87,7 @@ InstallDialog::InstallDialog(QHelpEngineCore *helpEngine, QWidget *parent,
             this, SLOT(updateDataReadProgress(int,int)));
     connect(m_http, SIGNAL(responseHeaderReceived(QHttpResponseHeader)),
             this, SLOT(readResponseHeader(QHttpResponseHeader)));
+#endif
     connect(m_ui.installButton, SIGNAL(clicked()), this, SLOT(install()));
     connect(m_ui.cancelButton, SIGNAL(clicked()), this, SLOT(cancelDownload()));
     connect(m_ui.browseButton, SIGNAL(clicked()), this, SLOT(browseDirectories()));
@@ -115,11 +119,13 @@ void InstallDialog::init()
     m_buffer = new QBuffer();
     m_buffer->open(QBuffer::ReadWrite);
 
+#if QT_VERSION < 0x050000
     if (m_port > -1)
         m_http->setProxy(m_host, m_port);
     m_http->setHost(url.host());
     m_httpAborted = false;
     m_docInfoId = m_http->get(url.path(), m_buffer);
+#endif
 
     m_ui.cancelButton->setEnabled(true);
     m_ui.closeButton->setEnabled(false);    
@@ -162,7 +168,9 @@ void InstallDialog::cancelDownload()
     m_ui.statusLabel->setText(tr("Download canceled."));
     m_httpAborted = true;
     m_itemsToInstall.clear();
+#if QT_VERSION < 0x050000
     m_http->abort();
+#endif
     m_ui.cancelButton->setEnabled(false);
     m_ui.closeButton->setEnabled(true);
     updateInstallButton();
@@ -228,7 +236,9 @@ void InstallDialog::downloadNextFile()
     QUrl url(QString(urlStr).arg(fileName));    
     
     m_httpAborted = false;
+#if QT_VERSION < 0x050000
     m_docId = m_http->get(url.path(), m_file);
+#endif
     
     m_ui.cancelButton->setEnabled(true);
     m_ui.closeButton->setEnabled(false);    
@@ -240,15 +250,17 @@ void InstallDialog::httpRequestFinished(int requestId, bool error)
     if (requestId == m_docInfoId  && m_buffer) {        
         m_ui.progressBar->hide();
         if (error) {
+#if QT_VERSION < 0x050000
             QMessageBox::information(this, m_windowTitle,
                 tr("Download failed: %1.")
                 .arg(m_http->errorString()));
+#endif
         } else if (!m_httpAborted) {
             QStringList registeredDocs = m_helpEngine->registeredDocumentations();
             m_buffer->seek(0);
             while (m_buffer->canReadLine()) {
                 QByteArray ba = m_buffer->readLine();
-                QStringList lst = QString::fromAscii(ba.constData()).split(QLatin1Char('|'));
+                QStringList lst = QString::fromUtf8(ba.constData()).split(QLatin1Char('|'));
                 if (lst.count() != 4) {
                     QMessageBox::information(this, m_windowTitle,
                         tr("Documentation info file is corrupt!"));
@@ -282,9 +294,11 @@ void InstallDialog::httpRequestFinished(int requestId, bool error)
             }            
             if (error) {
                 m_file->remove();
+#if QT_VERSION < 0x050000
                 QMessageBox::warning(this, m_windowTitle,
                     tr("Download failed: %1.")
                     .arg(m_http->errorString()));
+#endif
             } else if (checkSum.isEmpty() || m_currentCheckSum != checkSum) {
                 m_file->remove();
                 QMessageBox::warning(this, m_windowTitle,
@@ -318,6 +332,7 @@ void InstallDialog::installFile(const QString &fileName)
     }
 }
 
+#if QT_VERSION < 0x050000
 void InstallDialog::readResponseHeader(const QHttpResponseHeader &responseHeader)
 {
     TRACE_OBJ
@@ -331,6 +346,7 @@ void InstallDialog::readResponseHeader(const QHttpResponseHeader &responseHeader
         return;
     }
 }
+#endif
 
 void InstallDialog::updateDataReadProgress(int bytesRead, int totalBytes)
 {

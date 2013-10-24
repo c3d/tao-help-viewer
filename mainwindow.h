@@ -43,7 +43,7 @@
 #define MAINWINDOW_H
 
 #include <QtCore/QUrl>
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
 

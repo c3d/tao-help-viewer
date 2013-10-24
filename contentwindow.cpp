@@ -45,9 +45,9 @@
 #include "helpenginewrapper.h"
 #include "helpviewer.h"
 
-#include <QtGui/QLayout>
-#include <QtGui/QFocusEvent>
-#include <QtGui/QMenu>
+#include <QLayout>
+#include <QFocusEvent>
+#include <QMenu>
 
 #include <QtHelp/QHelpContentWidget>
 

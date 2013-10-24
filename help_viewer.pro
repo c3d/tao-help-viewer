@@ -39,11 +39,16 @@
 include(../main.pri)
 TEMPLATE = app
 TARGET = assistant
+QT_CONFIG += webkit
 contains(QT_CONFIG, webkit):QT += webkit
 CONFIG += qt \
-    warn_on \
-    help
+    warn_on
 QT += network
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += help printsupport webkitwidgets
+} else {
+    CONFIG += help
+}
 PROJECTNAME = Assistant
 DEPENDPATH += ../shared
 

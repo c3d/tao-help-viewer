@@ -45,8 +45,8 @@
 #include "helpenginewrapper.h"
 #include "tracer.h"
 
-#include <QtGui/QKeyEvent>
-#include <QtGui/QMenu>
+#include <QKeyEvent>
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
 

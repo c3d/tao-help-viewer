@@ -42,8 +42,8 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include <QtGui/QTextBrowser>
-#include <QtGui/QDialog>
+#include <QTextBrowser>
+#include <QDialog>
 
 QT_BEGIN_NAMESPACE
 

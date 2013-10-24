@@ -704,6 +704,11 @@ void HelpEngineWrapper::setUseBrowserFont(bool useBrowserFont)
     d->m_helpEngine->setCustomValue(UseBrowserFontKey, useBrowserFont);
 }
 
+#if QT_VERSION >= 0x050000
+template <typename U, typename V>
+static inline U qVariantValue(V v) { return v.template value<U>(); }
+#endif
+
 const QFont HelpEngineWrapper::appFont() const
 {
     TRACE_OBJ

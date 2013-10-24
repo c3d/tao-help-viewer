@@ -45,7 +45,7 @@
 #include <QtCore/QUrl>
 #include <QtCore/QPoint>
 
-#include <QtGui/QWidget>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 

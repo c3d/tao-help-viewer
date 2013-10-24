@@ -46,13 +46,14 @@
 #include <QtCore/QMap>
 #include <QtCore/QString>
 #include <QtCore/QStringList>
+#include <QtCore/QMimeData>
 
-#include <QtGui/QMenu>
-#include <QtGui/QLayout>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QClipboard>
-#include <QtGui/QApplication>
-#include <QtGui/QTextBrowser>
+#include <QMenu>
+#include <QLayout>
+#include <QKeyEvent>
+#include <QClipboard>
+#include <QApplication>
+#include <QTextBrowser>
 
 #include <QtHelp/QHelpSearchEngine>
 #include <QtHelp/QHelpSearchQueryWidget>

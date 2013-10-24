@@ -42,7 +42,7 @@
 
 #include <QtCore/QFileInfo>
 #include <QtCore/QStringBuilder>
-#include <QtGui/QMessageBox>
+#include <QMessageBox>
 
 #include "cmdlineparser.h"
 

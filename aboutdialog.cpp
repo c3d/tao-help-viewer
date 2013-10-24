@@ -43,13 +43,13 @@
 
 #include <QtCore/QBuffer>
 
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QLayout>
-#include <QtGui/QApplication>
-#include <QtGui/QDesktopWidget>
-#include <QtGui/QMessageBox>
-#include <QtGui/QDesktopServices>
+#include <QLabel>
+#include <QPushButton>
+#include <QLayout>
+#include <QApplication>
+#include <QDesktopWidget>
+#include <QMessageBox>
+#include <QDesktopServices>
 
 #include "aboutdialog.h"
 

@@ -46,13 +46,13 @@
 #include "helpviewer.h"
 #include "topicchooser.h"
 
-#include <QtGui/QLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QMenu>
-#include <QtGui/QContextMenuEvent>
-#include <QtGui/QListWidgetItem>
+#include <QLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QKeyEvent>
+#include <QMenu>
+#include <QContextMenuEvent>
+#include <QListWidgetItem>
 
 #include <QtHelp/QHelpIndexWidget>
 
