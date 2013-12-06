@@ -37,6 +37,7 @@
 # ******************************************************************************
 
 include(../main.pri)
+include(../version.pri)
 TEMPLATE = app
 TARGET = assistant
 contains(QT_CONFIG, webkit):QT += webkit
@@ -46,6 +47,7 @@ CONFIG += qt \
 QT += network
 PROJECTNAME = Assistant
 DEPENDPATH += ../shared
+DEFINES += APP_NAME=\"\\\"$$APP_NAME\\\"\"
 
 HEADERS += aboutdialog.h \
     bookmarkdialog.h \
