@@ -45,7 +45,7 @@ CONFIG += qt \
     warn_on
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += help printsupport webkitwidgets
+    QT += help printsupport webkitwidgets sql
 } else {
     CONFIG += help
 }
