@@ -137,7 +137,7 @@ win32 {
 
 mac {
     ICON = assistant.icns
-    TARGET = "Tao Presentations Help"
+    TARGET = "Tao3D Help"
     QMAKE_INFO_PLIST = Info_mac.plist
 
     # In *.lproj/InfoPlist.strings:

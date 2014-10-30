@@ -307,7 +307,7 @@ void setupTranslations()
 #endif
     if (locale == "C")
         locale = "en";
-    locale = QSettings("Taodyne", "Tao Presentations")
+    locale = QSettings("Taodyne", "Tao3D")
             .value("uiLanguage", locale).toString();
     const QString &resourceDir
         = QCoreApplication::applicationDirPath();
