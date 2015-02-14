@@ -49,10 +49,10 @@
 #include "centralwidget.h"
 #include "helpenginewrapper.h"
 
-#include <QtGui/QMenu>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QMessageBox>
-#include <QtGui/QSortFilterProxyModel>
+#include <QMenu>
+#include <QKeyEvent>
+#include <QMessageBox>
+#include <QSortFilterProxyModel>
 
 QT_BEGIN_NAMESPACE
 
@@ -283,7 +283,7 @@ void BookmarkManager::buildBookmarksMenu(const QModelIndex &index, QMenu* menu)
         return;
 
     const QString &text = index.data().toString();
-    const QIcon &icon = qVariantValue<QIcon>(index.data(Qt::DecorationRole));
+    const QIcon &icon = index.data(Qt::DecorationRole).value<QIcon>();
     if (index.data(UserRoleFolder).toBool()) {
         if (QMenu* subMenu = menu->addMenu(icon, text)) {
             for (int i = 0; i < bookmarkModel->rowCount(index); ++i)

@@ -49,10 +49,10 @@
 #include <QtCore/QUrl>
 
 #include <QtGui/QCloseEvent>
-#include <QtGui/QFileDialog>
-#include <QtGui/QKeySequence>
-#include <QtGui/QMessageBox>
-#include <QtGui/QShortcut>
+#include <QFileDialog>
+#include <QKeySequence>
+#include <QMessageBox>
+#include <QShortcut>
 
 QT_BEGIN_NAMESPACE
 

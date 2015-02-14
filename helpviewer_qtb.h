@@ -46,7 +46,7 @@
 #include <QtCore/QUrl>
 #include <QtCore/QVariant>
 
-#include <QtGui/QTextBrowser>
+#include <QTextBrowser>
 
 QT_BEGIN_NAMESPACE
 

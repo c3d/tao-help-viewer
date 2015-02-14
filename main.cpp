@@ -52,8 +52,8 @@
 #include <QtCore/QTranslator>
 #include <QtCore/QUrl>
 
-#include <QtGui/QApplication>
-#include <QtGui/QDesktopServices>
+#include <QApplication>
+#include <QDesktopServices>
 
 #include <QtHelp/QHelpEngine>
 #include <QtHelp/QHelpSearchEngine>
@@ -307,7 +307,7 @@ void setupTranslations()
 #endif
     if (locale == "C")
         locale = "en";
-    locale = QSettings("Taodyne", APP_NAME)
+    locale = QSettings("Taodyne", "Tao3D")
             .value("uiLanguage", locale).toString();
     const QString &resourceDir
         = QCoreApplication::applicationDirPath();

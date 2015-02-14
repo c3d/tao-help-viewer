@@ -45,7 +45,7 @@
 
 #include <QtCore/QPersistentModelIndex>
 
-#include <QtGui/QMenu>
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
 

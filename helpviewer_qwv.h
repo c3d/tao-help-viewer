@@ -44,8 +44,12 @@
 
 #include "helpviewer.h"
 
-#include <QtGui/QAction>
+#include <QAction>
+#if QT_VERSION >= 0x050000
+#include <QtWebKitWidgets/QWebView>
+#else
 #include <QtWebKit/QWebView>
+#endif
 
 QT_BEGIN_NAMESPACE
 

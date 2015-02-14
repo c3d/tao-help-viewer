@@ -43,8 +43,10 @@
 #define INSTALLDIALOG_H
 
 #include <QtCore/QQueue>
-#include <QtGui/QDialog>
+#include <QDialog>
+#if QT_VERSION < 0x050000
 #include <QtNetwork/QHttpResponseHeader>
+#endif
 #include "ui_installdialog.h"
 
 #ifndef QT_NO_HTTP
@@ -72,7 +74,9 @@ private slots:
     void cancelDownload();
     void install();
     void httpRequestFinished(int requestId, bool error);
+#if QT_VERSION <= 0x050000
     void readResponseHeader(const QHttpResponseHeader &responseHeader);
+#endif
     void updateDataReadProgress(int bytesRead, int totalBytes);
     void updateInstallButton();
     void browseDirectories();

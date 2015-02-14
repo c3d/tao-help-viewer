@@ -55,18 +55,18 @@
 
 #include <QtCore/QTimer>
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QtGui/QKeyEvent>
-#include <QtGui/QLayout>
-#include <QtGui/QMenu>
-#include <QtGui/QPrinter>
-#include <QtGui/QTabBar>
-#include <QtGui/QTabWidget>
-#include <QtGui/QTextBrowser>
-#include <QtGui/QToolButton>
-#include <QtGui/QPageSetupDialog>
-#include <QtGui/QPrintDialog>
-#include <QtGui/QPrintPreviewDialog>
+#include <QLayout>
+#include <QMenu>
+#include <QPrinter>
+#include <QTabBar>
+#include <QTabWidget>
+#include <QTextBrowser>
+#include <QToolButton>
+#include <QPageSetupDialog>
+#include <QPrintDialog>
+#include <QPrintPreviewDialog>
 
 #include <QtHelp/QHelpSearchEngine>
 

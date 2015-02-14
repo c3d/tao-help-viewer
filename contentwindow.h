@@ -44,7 +44,7 @@
 
 #include <QtCore/QUrl>
 #include <QtCore/QModelIndex>
-#include <QtGui/QWidget>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 

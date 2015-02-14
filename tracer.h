@@ -72,4 +72,10 @@ QT_END_NAMESPACE
 #define TRACE_OBJ
 #endif
 
+#if QT_VERSION >= 0x050000
+// Qt5.0 deprecated that, but we need it a few times here
+template <typename T, typename U>
+static inline T qFindChild(U u) { return u->template findChild<T>(); }
+#endif
+
 #endif // TRACER_H

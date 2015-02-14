@@ -54,8 +54,8 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QSocketNotifier>
 
-#include <QtGui/QMessageBox>
-#include <QtGui/QApplication>
+#include <QMessageBox>
+#include <QApplication>
 
 #include <QtHelp/QHelpEngine>
 #include <QtHelp/QHelpIndexWidget>

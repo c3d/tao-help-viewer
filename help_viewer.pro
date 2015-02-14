@@ -40,11 +40,16 @@ include(../main.pri)
 include(../version.pri)
 TEMPLATE = app
 TARGET = assistant
+QT_CONFIG += webkit
 contains(QT_CONFIG, webkit):QT += webkit
 CONFIG += qt \
-    warn_on \
-    help
+    warn_on
 QT += network
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += help printsupport webkitwidgets sql
+} else {
+    CONFIG += help
+}
 PROJECTNAME = Assistant
 DEPENDPATH += ../shared
 DEFINES += APP_NAME=\"\\\"$$APP_NAME\\\"\"
@@ -134,7 +139,7 @@ win32 {
 
 mac {
     ICON = assistant.icns
-    TARGET = "Tao Presentations Help"
+    TARGET = "Tao3D Help"
     QMAKE_INFO_PLIST = Info_mac.plist
 
     # In *.lproj/InfoPlist.strings:
