@@ -1,14 +1,14 @@
 /Makefile
 /Makefile.Debug
 /Makefile.Release
-/Tao Presentations Help.app
+/Tao3D Help.app
 /assistant
 /helpenginewrapper.moc
 /moc_*.cpp
 /qrc_*.cpp
 /ui_*.h
-/debug
-/release
+**/debug
+**/release
 /object_script.*.Release
 /object_script.*.Debug
 /*.o
