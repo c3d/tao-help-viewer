@@ -47,6 +47,12 @@
 #if QT_VERSION < 0x050000
 #include <QtNetwork/QHttpResponseHeader>
 #endif
+
+ // Workardound Momoc bug in Qt 5.7 as shipped with original Fedora 25
+#if !QT_VERSION
+#define QT_VERSION 0x050700
+#endif
+
 #include "ui_installdialog.h"
 
 #ifndef QT_NO_HTTP
