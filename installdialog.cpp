@@ -1,4 +1,38 @@
-/****************************************************************************
+// *****************************************************************************
+// installdialog.cpp                                               Tao3D project
+// *****************************************************************************
+//
+// File description:
+//
+//
+//
+//
+//
+//
+//
+//
+// *****************************************************************************
+// This software is licensed under the GNU General Public License v3
+// (C) 2013,2015,2019, Christophe de Dinechin <christophe@dinechin.org>
+// (C) 2011,2013, Jérôme Forissier <jerome@taodyne.com>
+// *****************************************************************************
+// This file is part of Tao3D
+//
+// Tao3D is free software: you can r redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Tao3D is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Tao3D, in a file named COPYING.
+// If not, see <https://www.gnu.org/licenses/>.
+// *****************************************************************************
+/*
 **
 ** Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/
@@ -37,7 +71,7 @@
 **
 ** $QT_END_LICENSE$
 **
-****************************************************************************/
+*/
 #include "tracer.h"
 
 #include "installdialog.h"
@@ -71,7 +105,7 @@ InstallDialog::InstallDialog(QHelpEngineCore *helpEngine, QWidget *parent,
 {
     TRACE_OBJ
     m_ui.setupUi(this);
-    
+
     m_ui.installButton->setEnabled(false);
     m_ui.cancelButton->setEnabled(false);
     m_ui.pathLineEdit->setText(QFileInfo(m_helpEngine->collectionFile()).absolutePath());
@@ -114,7 +148,7 @@ void InstallDialog::init()
     TRACE_OBJ
     m_ui.statusLabel->setText(tr("Downloading documentation info..."));
     m_ui.progressBar->show();
-    
+
     QUrl url(QLatin1String("http://qt.nokia.com/doc/assistantdocs/docs.txt"));
     m_buffer = new QBuffer();
     m_buffer->open(QBuffer::ReadWrite);
@@ -128,7 +162,7 @@ void InstallDialog::init()
 #endif
 
     m_ui.cancelButton->setEnabled(true);
-    m_ui.closeButton->setEnabled(false);    
+    m_ui.closeButton->setEnabled(false);
 }
 
 void InstallDialog::updateInstallButton()
@@ -141,7 +175,7 @@ void InstallDialog::updateInstallButton()
             && item->flags() & Qt::ItemIsEnabled) {
             m_ui.installButton->setEnabled(true);
             return;
-        }       
+        }
     }
     m_ui.installButton->setEnabled(false);
 }
@@ -215,7 +249,7 @@ void InstallDialog::downloadNextFile()
         QMessageBox::Yes) == QMessageBox::No) {
         installFile(saveFileName);
         downloadNextFile();
-        return;        
+        return;
     }
 
     m_file = new QFile(saveFileName);
@@ -233,21 +267,21 @@ void InstallDialog::downloadNextFile()
     m_ui.progressBar->show();
 
     QLatin1String urlStr("http://qt.nokia.com/doc/assistantdocs/%1");
-    QUrl url(QString(urlStr).arg(fileName));    
-    
+    QUrl url(QString(urlStr).arg(fileName));
+
     m_httpAborted = false;
 #if QT_VERSION < 0x050000
     m_docId = m_http->get(url.path(), m_file);
 #endif
-    
+
     m_ui.cancelButton->setEnabled(true);
-    m_ui.closeButton->setEnabled(false);    
+    m_ui.closeButton->setEnabled(false);
 }
 
 void InstallDialog::httpRequestFinished(int requestId, bool error)
 {
     TRACE_OBJ
-    if (requestId == m_docInfoId  && m_buffer) {        
+    if (requestId == m_docInfoId  && m_buffer) {
         m_ui.progressBar->hide();
         if (error) {
 #if QT_VERSION < 0x050000
@@ -279,19 +313,19 @@ void InstallDialog::httpRequestFinished(int requestId, bool error)
         delete m_buffer;
         m_buffer = 0;
         m_ui.statusLabel->setText(tr("Done."));
-        m_ui.cancelButton->setEnabled(false);        
+        m_ui.cancelButton->setEnabled(false);
         m_ui.closeButton->setEnabled(true);
         updateInstallButton();
-    } else if (requestId == m_docId) {        
+    } else if (requestId == m_docId) {
         m_file->close();
         if (!m_httpAborted) {
             QString checkSum;
-            if (m_file->open(QIODevice::ReadOnly)) {                
+            if (m_file->open(QIODevice::ReadOnly)) {
                 QByteArray digest = QCryptographicHash::hash(m_file->readAll(),
                     QCryptographicHash::Md5);
                 m_file->close();
-                checkSum = QString::fromLatin1(digest.toHex());             
-            }            
+                checkSum = QString::fromLatin1(digest.toHex());
+            }
             if (error) {
                 m_file->remove();
 #if QT_VERSION < 0x050000
@@ -308,7 +342,7 @@ void InstallDialog::httpRequestFinished(int requestId, bool error)
                     .arg(QFileInfo(m_file->fileName()).fileName()));
                 m_ui.progressBar->setMaximum(0);
                 m_ui.statusLabel->setText(tr("Done."));
-                installFile(m_file->fileName());                
+                installFile(m_file->fileName());
             }
         } else {
             m_file->remove();
